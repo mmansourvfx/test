@@ -18,7 +18,7 @@ const mongodbCluster='mycluster';
 const mongodbUrl =`mongodb+srv://${mongodbUserName}:${mongodbPassword}@${mongodbCluster}.tvdiyu4.mongodb.net/?retryWrites=true&w=majority&appName=${mongodbCluster}`; // replace with your MongoDB URL
 
 const app = express();
-
+console.log('Render Start Command');
 mongoose.connect(mongodbUrl)
 .then((result) => {
     console.log('Connected to MongoDB');
