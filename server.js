@@ -11,22 +11,26 @@ const units = require('./models/units.js');
 const unit = require('./models/unit.js');
 
 
-const Address=process.env.ADDRESS;
-const Port=process.env.PORT;
+const ADDRESS=process.env.ADDRESS;
+const PORT=process.env.PORT;
 
 //const serverAddress='192.168.1.100';
 //const serverPort='3000';
 const mongodbUserName=process.env.MONGODB_USERNAME;
 const mongodbPassword=process.env.MONGODB_PASSWORD;
 const mongodbCluster=process.env.MONGODB_CLUSTER;
-const mongodbUrl =`mongodb+srv://${mongodbUserName}:${mongodbPassword}@${mongodbCluster}.tvdiyu4.mongodb.net/?retryWrites=true&w=majority&appName=${mongodbCluster}`; // replace with your MongoDB URL
+//const mongodbUrl =`mongodb+srv://${mongodbUserName}:${mongodbPassword}@${mongodbCluster}.tvdiyu4.mongodb.net/?retryWrites=true&w=majority&appName=${mongodbCluster}`;
+const mongodbUrl = "mongodb+srv://admin:1234@mycluster.tvdiyu4.mongodb.net/?retryWrites=true&w=majority&appName=myCluster" // replace with your MongoDB URL;
 
 const app = express();
+//app.listen(PORT,ADDRESS);
+
 console.log('Render Start Command');
+
 mongoose.connect(mongodbUrl)
 .then((result) => {
     console.log('Connected to MongoDB');
-    app.listen(serverPort,() => {
+    app.listen(PORT,() => {
         console.log('Server running');
     });
 })
