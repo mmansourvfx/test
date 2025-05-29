@@ -1,5 +1,7 @@
 // node.js modules
+require('dotenv').config();
 const fs = require('fs');
+
 // express modules
 const express = require('express');
 const cors = require('cors');
@@ -9,12 +11,14 @@ const units = require('./models/units.js');
 const unit = require('./models/unit.js');
 
 
-const serverAddress='192.168.1.100';
-const serverPort='3000';
+const Address=process.env.ADDRESS;
+const Port=process.env.PORT;
 
-const mongodbUserName='admin';
-const mongodbPassword='1234';
-const mongodbCluster='mycluster';
+//const serverAddress='192.168.1.100';
+//const serverPort='3000';
+const mongodbUserName=process.env.MONGODB_USERNAME;
+const mongodbPassword=process.env.MONGODB_PASSWORD;
+const mongodbCluster=process.env.MONGODB_CLUSTER;
 const mongodbUrl =`mongodb+srv://${mongodbUserName}:${mongodbPassword}@${mongodbCluster}.tvdiyu4.mongodb.net/?retryWrites=true&w=majority&appName=${mongodbCluster}`; // replace with your MongoDB URL
 
 const app = express();
@@ -22,7 +26,7 @@ console.log('Render Start Command');
 mongoose.connect(mongodbUrl)
 .then((result) => {
     console.log('Connected to MongoDB');
-    app.listen(serverPort,serverAddress,() => {
+    app.listen(serverPort,() => {
         console.log('Server running');
     });
 })
